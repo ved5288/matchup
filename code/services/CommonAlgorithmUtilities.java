@@ -3,7 +3,9 @@ package services;
 import java.util.ArrayList;
 import java.util.Iterator;
 import models.Student;
+import models.Course;
 import models.StudentPreference;
+import models.CoursePreference;
 import models.StudentClass;
 
 /**
@@ -102,6 +104,15 @@ public class CommonAlgorithmUtilities {
 		for (Student s : studentsWithCapacityLeft){
 			if (s.courseAllottedInCurrentIteration!=null){
 				s.orderedListOfcoursesAllotted.add(s.courseAllottedInCurrentIteration);
+
+				// Update the least preferred preference number for the course which is allotted.
+				Course allottedCourse = s.courseAllottedInCurrentIteration.getCourseObj();
+				CoursePreference cp = CoursePreference.getCoursePreferenceByRollNo(allottedCourse.coursePreferenceList,s.getRollNo());
+
+				if(allottedCourse.leastPreferredAllottedStudent < cp.getPreferenceNo()){
+					allottedCourse.leastPreferredAllottedStudent = cp.getPreferenceNo();
+				}
+
 			}
 		}
 	}

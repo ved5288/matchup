@@ -10,7 +10,7 @@ import models.StudentClass;
 import models.Student;
 import models.StudentPreference;
 
-public class PopulateStudentClassSpecifications{
+public class PopulateMasterClassSpecifications{
 	/**
 	 * This method is used to load the student class specifications
 	 * @param studentList - List of students objects
@@ -34,29 +34,25 @@ public class PopulateStudentClassSpecifications{
 				line.replaceAll("\\s+",""); //Remove all whitespace
 				inputLine = line.split(splitBy);
 
-				tempStudent = Student.getStudentByRollNo(inputLine[0],studentList);
-				if (tempStudent == null){ //The student does not exist in the student list : return error message
-			        	br.close();
-			        	return "Student : " + inputLine[0] + " does not exist but was in the student class specifications file";
-			    }
+				// Add this class constraint to all the students
+				for ( Student s : studentList ) {
+					
+					maxCoursesInClass = Integer.parseInt(inputLine[1]);
+					sc = new StudentClass(maxCoursesInClass);
 
-			    maxCoursesInClass = Integer.parseInt(inputLine[1]);
-
-			    sc = new StudentClass(maxCoursesInClass);
-
-			    for(int i=2;i<inputLine.length;i++){  //loop through the courses in the class constraint specification and add them to the student class details.
+					for(int i=1;i<inputLine.length;i++){  //loop through the courses in the class and add them to the student class information.
 			        
-			        StudentPreference sp = StudentPreference.getStudentPreferenceBycourseNumber(tempStudent.studentPreferenceList,inputLine[i]);
+			        	StudentPreference sp = StudentPreference.getStudentPreferenceBycourseNumber(s.studentPreferenceList,inputLine[i]);
 			        
-			        if(sp == null){ // The course doesn't exist in the preference list
-			        	br.close();
-			        	return "Course " + inputLine[i] + " does not exist in the student preference list of student " + inputLine[0] + " but has an entry in the student class specifications file";
-			        }	
+				        if(sp != null){ // The course exists in the preference list
+				        	sc.coursesInThisClass.add(sp);
+				        }	
+		        	}
 
-			        sc.coursesInThisClass.add(sp);
-		        }
-
-		        tempStudent.studentClasses.add(sc);
+		        	if(sc.coursesInThisClass.size()>maxCoursesInClass){ // Add the class to the student's info if there are at least maxCoursesInClass courses present in students preference lists.
+		        		s.studentClasses.add(sc);
+		        	}
+				}
 
             }
 			br.close();//closing file pointer

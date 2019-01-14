@@ -11,6 +11,7 @@ import services.CheckInputFormats;
 import services.CommonAlgorithmUtilities;
 import services.Constants;
 import services.ExchangeUnstablePairs;
+import services.UnstablePairs;
 import services.FirstPreferenceAllotmentAlgorithm;
 import services.GetStatistics;
 import services.InputSanitization;
@@ -26,7 +27,7 @@ import services.dataInput.*;
  */
 public class ExecuteStepsForAllotment {
 		
-	public static void executeAllotmentSteps(String studentListFile, String courseListFile, String studentPreferenceListFile, String coursePreferenceListFile, String studentClassFile, int algorithm, String outputFolder) throws IOException {
+	public static void executeAllotmentSteps(String studentListFile, String courseListFile, String studentPreferenceListFile, String coursePreferenceListFile, String masterClassFile, String studentClassFile, int algorithm, String outputFolder) throws IOException {
 		
 		//Some declarations
 		ArrayList<Student> studentList;
@@ -67,6 +68,12 @@ public class ExecuteStepsForAllotment {
 			System.exit(1);
 		}
 
+		errorMsg = CheckInputFormats.checkMasterClassFileFormat(masterClassFile);
+		if (errorMsg!=null){
+			printMessage("Exiting due to error in the format of the student class specifications file. " + errorMsg);
+			System.exit(1);
+		}	
+
 		errorMsg = CheckInputFormats.checkStudentClassFileFormat(studentClassFile);
 		if (errorMsg!=null){
 			printMessage("Exiting due to error in the format of the student class specifications file. " + errorMsg);
@@ -105,6 +112,13 @@ public class ExecuteStepsForAllotment {
 			System.exit(1);
 		}
 		
+		//Read the input student class specifications
+		errorMsg = PopulateMasterClassSpecifications.execute(studentList, masterClassFile);
+		if (errorMsg!=null){
+			printMessage("Exiting. " + errorMsg);
+			System.exit(1);
+		}
+
 		//Read the input student class specifications
 		errorMsg = PopulateStudentClassSpecifications.execute(studentList, studentClassFile);
 		if (errorMsg!=null){
@@ -156,8 +170,9 @@ public class ExecuteStepsForAllotment {
         /* COMPUTE THE REASONS FOR ALL THE POSSIBLE STUDENT-COURSE ALLOTMENTS THAT WERE NOT MADE*/
         ReasonsForNotAllottingPreferences.computeReasonsonsForNotAllottingPreferences(originalStudentList);
         
-        /* COMPUTE THE LIST OF EXCHANGE UNSTABLE PAIRS */
+        /* COMPUTE THE LIST OF EXCHANGE UNSTABLE PAIRS and UNSTABLE PAIRS */
         String exchangeUnstablePairs = ExchangeUnstablePairs.computeExchangeUnstablePairs(studentList);
+        String unstablePairs = UnstablePairs.computeUnstablePairs(studentList);
        
         /* PRINT OUTPUT */
         printProgressNotification("Printing Output ....");
@@ -181,6 +196,8 @@ public class ExecuteStepsForAllotment {
         CreateFolderForStudentEmails.execute(studentList,outputFolder+"/studentEmails");
         //Write out the set of exchange unstable pairs for this allotment
         PrintExchangeUnstablePairs.execute(exchangeUnstablePairs,outputFolder + "/exchangeUnstablePairs.csv");
+        //Write out the set of unstable pairs for this allotment
+        PrintExchangeUnstablePairs.execute(unstablePairs,outputFolder + "/unstablePairs.csv");
     }
 	
 	//Just a function which sends the message to be printed to the correct output

@@ -11,7 +11,7 @@ import models.StudentClass;
  * A pair of students is exchange unstable if they each have 1 allotted course that
  * they would exchange with the other student, such that both students
  * are better off in the allotment (lexicographically better off - read lexicographical order comparison online)
- * @author akshay
+ * @author vedant - modified the code written by akshay
  *
  */
 public class ExchangeUnstablePairs {

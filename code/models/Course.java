@@ -13,6 +13,7 @@ public class Course{ //Note that the terms 'course number' and 'courseNumber' ha
 	private String courseNumber; // Note that this name is a modified version of the original course number. It has $inside or $outside appended to it. This is the field that has to be used for all operations except while finally printing the output. If you want the original name of the course, read the This is a Read only field.
 	private int credits; //The number of credits of the course. Read only.
 	private int capacity; //The number of students the course can accomodate. Read only.
+	public int leastPreferredAllottedStudent; //Of the students who were allotted the course, the preference number of the student who is the least preferred by the course.
 	public int capacityStillFree; //The capacity left in the course. Will be modified during the course of the algorithm as the students get allocated to it. Can be modified.
 	public ArrayList<CoursePreference> coursePreferenceList; //The courses preference list over students. Read only.
 	public ArrayList<CoursePreference> currentIterationStudentAllottedList; //The students allotted to the course during the algorithm. Can be modified anyhow, as is required by the algorithm
@@ -25,6 +26,7 @@ public class Course{ //Note that the terms 'course number' and 'courseNumber' ha
 		capacity = inp_capacity;
 		capacityStillFree = capacity;
 		noOfRejections = 0;
+		leastPreferredAllottedStudent = 0;
 		coursePreferenceList = new ArrayList<CoursePreference>();
 	}
 	

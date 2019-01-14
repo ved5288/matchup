@@ -37,6 +37,9 @@ public class Main {
 				
 		System.out.println("Please enter the location of file from where you want the course preferences to be read: ");
 		String coursePreferenceListFile = sc.nextLine();
+
+		System.out.println("Please enter the location of file from where you want the master class constraint specifications to be read: ");
+		String masterClassFile = sc.nextLine();
 	
 		System.out.println("Please enter the location of file from where you want the student class constraint specifications to be read: ");
 		String studentClassFile = sc.nextLine();
@@ -55,7 +58,7 @@ public class Main {
         String outputFolder = sc.nextLine();
         
       	//Call the executeAllotmentSteps function to run the allotment
-      	ExecuteStepsForAllotment.executeAllotmentSteps(studentListFile,courseListFile,studentPreferenceListFile,coursePreferenceListFile,studentClassFile,algorithm,outputFolder);
+      	ExecuteStepsForAllotment.executeAllotmentSteps(studentListFile,courseListFile,studentPreferenceListFile,coursePreferenceListFile,masterClassFile,studentClassFile,algorithm,outputFolder);
       	
       	//Program has ended
       	System.out.println("Execution over.......");
