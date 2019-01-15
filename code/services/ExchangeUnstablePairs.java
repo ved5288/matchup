@@ -36,18 +36,27 @@ public class ExchangeUnstablePairs {
 							continue; //If the exchange does not benefit both students, exchange instability not possible here
 						}
 						
+						//Ignore if sp2 is already allotted to s1 or sp1 is already allotted to s2
+						if (s1.orderedListOfcoursesAllotted.contains(StudentPreference.getStudentPreferenceBycourseNumber(s1.studentPreferenceList,sp2.getCourseObj().getcourseNumber())) ){
+							continue;
+						}
+
+						if (s2.orderedListOfcoursesAllotted.contains(StudentPreference.getStudentPreferenceBycourseNumber(s2.studentPreferenceList,sp1.getCourseObj().getcourseNumber())) ){
+							continue;
+						}
+
 						//The 2 preferences should not refer to the same course
 						if (sp1.getCourseObj()==sp2.getCourseObj()){
 							continue; //If true, exchange instability not possible here
 						}
 							
 						//sp2 should not violate class constraints with the allotted elective courses (apart from sp1) of s1
-						if (checkElecitveCourseConstrained(s1,sp2,sp1)){
+						if (checkElecitveCourseConstrained(s1,StudentPreference.getStudentPreferenceBycourseNumber(s1.studentPreferenceList,sp2.getCourseObj().getcourseNumber()),sp1)){
 							continue; //If there is a violation, exchange instability not possible here
 						}
 							
 						//sp1 should not violate class constraints with the allotted elective courses (apart from sp2) of s2
-						if (checkElecitveCourseConstrained(s2,sp1,sp2)){
+						if (checkElecitveCourseConstrained(s2,StudentPreference.getStudentPreferenceBycourseNumber(s2.studentPreferenceList,sp1.getCourseObj().getcourseNumber()),sp2)){
 							continue; //If there is a violation, exchange instability not possible here
 						}
 							

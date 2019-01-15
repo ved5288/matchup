@@ -197,7 +197,7 @@ public class ExecuteStepsForAllotment {
         //Write out the set of exchange unstable pairs for this allotment
         PrintExchangeUnstablePairs.execute(exchangeUnstablePairs,outputFolder + "/exchangeUnstablePairs.csv");
         //Write out the set of unstable pairs for this allotment
-        PrintExchangeUnstablePairs.execute(unstablePairs,outputFolder + "/unstablePairs.csv");
+        PrintUnstablePairs.execute(unstablePairs,outputFolder + "/unstablePairs.csv");
     }
 	
 	//Just a function which sends the message to be printed to the correct output

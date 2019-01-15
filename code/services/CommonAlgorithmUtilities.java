@@ -67,6 +67,7 @@ public class CommonAlgorithmUtilities {
 							// This class contains the student preference sp. If the scope if 0, then remove the studentPreference.
 							if(sc.scopeOfAllotment==0){
 								iterator.remove();
+								break;
 							}
 						}							
 					}

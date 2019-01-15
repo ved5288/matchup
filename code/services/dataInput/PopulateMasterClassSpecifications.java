@@ -37,7 +37,7 @@ public class PopulateMasterClassSpecifications{
 				// Add this class constraint to all the students
 				for ( Student s : studentList ) {
 					
-					maxCoursesInClass = Integer.parseInt(inputLine[1]);
+					maxCoursesInClass = Integer.parseInt(inputLine[0]);
 					sc = new StudentClass(maxCoursesInClass);
 
 					for(int i=1;i<inputLine.length;i++){  //loop through the courses in the class and add them to the student class information.
