@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import models.Student;
+import models.Course;
 import services.GetStatistics;
 
 public class PrintAggregateStatistics{
@@ -17,7 +18,7 @@ public class PrintAggregateStatistics{
 	 * @throws IOException
 	 * Outputs aggregate statistics like mean,variance,10 percentile of the 'Effective Average Rank' and 'Credit Satisfaction Ratio' for each student
 	 */
-	public static void execute(ArrayList<Student> studentList,String outputFile) throws IOException {
+	public static void execute(ArrayList<Student> studentList, ArrayList<Course> courseList, String outputFile) throws IOException {
 		//Open output file for writing
 		File outfile = new File(outputFile);
 		if (!outfile.exists()) {
@@ -26,25 +27,32 @@ public class PrintAggregateStatistics{
 		FileWriter fw = new FileWriter(outfile.getAbsoluteFile());
 		BufferedWriter bw = new BufferedWriter(fw);
 			
-		ArrayList<Double> effectiveAvgRanks = new ArrayList<Double>();
+		ArrayList<Double> studentEffectiveAvgRanks = new ArrayList<Double>();
 		ArrayList<Double> creditSatisfactionRatios = new ArrayList<Double>();
 		for (Student s : studentList){
-			effectiveAvgRanks.add(s.effectiveAverageRank);
+			studentEffectiveAvgRanks.add(s.effectiveAverageRank);
 			creditSatisfactionRatios.add(s.creditSatisfactionRatio);
 		}
-		
-		bw.write("EFFECTIVE RANK STATISTICS");
+			
+		ArrayList<Double> courseEffectiveAvgRanks = new ArrayList<Double>();
+		ArrayList<Double> capacitySatisfactionRatios = new ArrayList<Double>();
+		for (Course c : courseList){
+			courseEffectiveAvgRanks.add(c.effectiveAverageRank);
+			capacitySatisfactionRatios.add(c.capacitySatisfactionRatio);
+		}
+
+		bw.write("STUDENT EFFECTIVE RANK STATISTICS");
 		bw.write("\n Mean = ");
-		double effectiveRankMean = GetStatistics.getMean(effectiveAvgRanks);
-		bw.write(Double.toString(roundOff(effectiveRankMean)));
+		double studentEffectiveRankMean = GetStatistics.getMean(studentEffectiveAvgRanks);
+		bw.write(Double.toString(roundOff(studentEffectiveRankMean)));
 		bw.write("\n Standard Deviation = ");
-		double effectiveRankSd = GetStatistics.getStandardDeviation(effectiveAvgRanks);
-		bw.write(Double.toString(roundOff(effectiveRankSd)));
+		double studentEffectiveRankSd = GetStatistics.getStandardDeviation(studentEffectiveAvgRanks);
+		bw.write(Double.toString(roundOff(studentEffectiveRankSd)));
 		bw.write("\n Lowest 10Percentile = ");
-		double effectiveRank10Percentile = GetStatistics.getHighest10Percentile(effectiveAvgRanks);
-		bw.write(Double.toString(roundOff(effectiveRank10Percentile)));
+		double studentEffectiveRank10Percentile = GetStatistics.getHighest10Percentile(studentEffectiveAvgRanks);
+		bw.write(Double.toString(roundOff(studentEffectiveRank10Percentile)));
 		
-		bw.write("\n\nCREDIT SATISFACTION RATIO STATISTICS");
+		bw.write("\n\nSTUDENT CREDIT SATISFACTION RATIO STATISTICS");
 		bw.write("\n Mean = ");
 		double creditSatisfactionMean = GetStatistics.getMean(creditSatisfactionRatios);
 		bw.write(Double.toString(roundOff(creditSatisfactionMean)));
@@ -54,6 +62,33 @@ public class PrintAggregateStatistics{
 		bw.write("\n Lowest 10Percentile = ");
 		double creditSatisfaction10Percentile = GetStatistics.getLowest10Percentile(creditSatisfactionRatios);
 		bw.write(Double.toString(roundOff(creditSatisfaction10Percentile)));
+		
+		bw.write("\n\nCOURSE EFFECTIVE RANK STATISTICS");
+		bw.write("\n Mean = ");
+		double courseEffectiveRankMean = GetStatistics.getMean(courseEffectiveAvgRanks);
+		bw.write(Double.toString(roundOff(courseEffectiveRankMean)));
+		bw.write("\n Standard Deviation = ");
+		double courseEffectiveRankSd = GetStatistics.getStandardDeviation(courseEffectiveAvgRanks);
+		bw.write(Double.toString(roundOff(courseEffectiveRankSd)));
+		bw.write("\n Lowest 10Percentile = ");
+		double courseEffectiveRank10Percentile = GetStatistics.getHighest10Percentile(courseEffectiveAvgRanks);
+		bw.write(Double.toString(roundOff(courseEffectiveRank10Percentile)));
+		
+		bw.write("\n\nCOURSE CAPACITY SATISFACTION RATIO STATISTICS");
+		bw.write("\n Mean = ");
+		double capacitySatisfactionMean = GetStatistics.getMean(capacitySatisfactionRatios);
+		bw.write(Double.toString(roundOff(capacitySatisfactionMean)));
+		bw.write("\n Standard Deviation = ");
+		double capacitySatisfactionSd = GetStatistics.getStandardDeviation(capacitySatisfactionRatios);
+		bw.write(Double.toString(roundOff(capacitySatisfactionSd)));
+		bw.write("\n Lowest 10Percentile = ");
+		double capacitySatisfaction10Percentile = GetStatistics.getLowest10Percentile(capacitySatisfactionRatios);
+		bw.write(Double.toString(roundOff(capacitySatisfaction10Percentile)));
+		
+		bw.write("\n\nTOTAL CREDITS ALLOTTED");
+		bw.write("\n Total Credits = ");
+		int totalCredits = GetStatistics.computeTotalCreditsAllotted(studentList);
+		bw.write(Integer.toString(totalCredits));
 		
 		bw.close();
 		

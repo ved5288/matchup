@@ -166,6 +166,7 @@ public class ExecuteStepsForAllotment {
         
         /* COMPUTE STATISTICS */
         GetStatistics.computePerStudentStatistics(studentList);
+        GetStatistics.computePerCourseStatistics(courseList);
         
         /* COMPUTE THE REASONS FOR ALL THE POSSIBLE STUDENT-COURSE ALLOTMENTS THAT WERE NOT MADE*/
         ReasonsForNotAllottingPreferences.computeReasonsonsForNotAllottingPreferences(originalStudentList);
@@ -180,8 +181,10 @@ public class ExecuteStepsForAllotment {
         PrintOutput.execute(studentList,outputFolder + "/output.csv");
         //Write the per student statistics
         PrintPerStudentStatistics.execute(studentList,outputFolder + "/perStudentStatistics.csv");
+        //Write the per course statistics
+        PrintPerCourseStatistics.execute(courseList,outputFolder + "/perCourseStatistics.csv");
         //Write the aggregate statistics
-        PrintAggregateStatistics.execute(studentList,outputFolder + "/aggregateStatistics.csv");
+        PrintAggregateStatistics.execute(studentList, courseList, outputFolder + "/aggregateStatistics.csv");
         //Write the number of rejections statistic
         PrintRejections.execute(courseList,outputFolder + "/rejections.csv");
         //Write the list of student preferences that have capacity 0. Not compulsory. Just so that if we feel like the course could be taken by SEAT students, we can do something about it.*/

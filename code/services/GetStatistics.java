@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import models.Course;
+import models.CoursePreference;
 import models.Student;
 import models.StudentPreference;
 import models.StudentClass;
@@ -61,6 +62,20 @@ public class GetStatistics{
 		int tenPercentileIndex = (int) (0.9*size);
 		return arrayCopy.get(tenPercentileIndex);
 	}
+
+	/** 
+	 * Computes the total number of credits allotted among all students
+	 * @param studentList
+	 */
+	public static int computeTotalCreditsAllotted(ArrayList<Student> studentList){
+		int totalNumberOfCredits = 0;
+		for ( Student s : studentList ) {
+			for ( StudentPreference sp : s.orderedListOfcoursesAllotted ) {
+				totalNumberOfCredits += sp.getCourseObj().getCredits();
+			}
+		}
+		return totalNumberOfCredits;
+	}
 	
 	/**
 	 * Computes some per student statistics based on the allotted courses and stores it in the student object itself
@@ -71,6 +86,42 @@ public class GetStatistics{
 		computeCreditSatisfactionRatios(studentList);
 	}
 	
+	/**
+	 * Computes the effectiveAverageRank for the courses
+	 * @param courseList
+	 */
+	public static void computePerCourseStatistics(ArrayList<Course> courseList){
+		for ( Course c : courseList ) {
+
+			int index = 1;
+			double totalRank = 0;
+			int numOfStudentsAllotted = 0;
+			for ( CoursePreference cp : c.coursePreferenceList ){
+				Student s = cp.getStudentObj();
+				StudentPreference sp = StudentPreference.getStudentPreferenceBycourseNumber(s.studentPreferenceList, c.getcourseNumber());
+				
+				if(s.orderedListOfcoursesAllotted.contains(sp)){
+					totalRank += index;
+					numOfStudentsAllotted++;
+				}
+				index++;
+			}
+
+			if(numOfStudentsAllotted==0){ // If no one was allotted then the rank is 0. avoids division by 0.
+				c.effectiveAverageRank = 0;
+			} else {
+				c.effectiveAverageRank = totalRank/ (double)(numOfStudentsAllotted*numOfStudentsAllotted);
+			}
+
+			if(c.getCapacity()==0){ //If the course has 0 capacity, then the capacity satisfaction ratio is 1.
+				c.capacitySatisfactionRatio = 1;
+			} else {
+				c.capacitySatisfactionRatio = (double) numOfStudentsAllotted / (double) (c.getCapacity());
+			}
+		}
+	}
+
+
 	/**
 	 * Computes the credit satisfaction ratio for each student, which is (Allotted Credits)/(Max Elective Credits)
 	 * Read code documentation for more details

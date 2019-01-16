@@ -19,6 +19,9 @@ public class Course{ //Note that the terms 'course number' and 'courseNumber' ha
 	public ArrayList<CoursePreference> currentIterationStudentAllottedList; //The students allotted to the course during the algorithm. Can be modified anyhow, as is required by the algorithm
 	public int noOfRejections; //keeps track of the number of rejections in the algorithm. It is used as a statistic to determine popular courses
 	
+	public double effectiveAverageRank;
+	public double capacitySatisfactionRatio;
+
 	//constructor simply initializes the fields.
 	public Course (String inp_courseNumber,int inp_capacity, int inp_credits){
 		courseNumber=inp_courseNumber;
@@ -64,6 +67,20 @@ public class Course{ //Note that the terms 'course number' and 'courseNumber' ha
 		}
 		return null; //course not found. 
 		//Remember to account for the possibility of this function returning null, else you could get a null pointer exception
+	}
+
+	/**
+	 *
+	 * @param preferenceNo
+	 * @return The student object corresponding to the queried preference number
+	 */
+	public Student getStudentOfPreferenceNumber(int preferenceNo){
+		for (CoursePreference cp : coursePreferenceList ) {
+			if(cp.getPreferenceNo()==preferenceNo){
+				return cp.getStudentObj();
+			}
+		}
+		return null;
 	}
 	
 }

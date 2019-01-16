@@ -60,7 +60,7 @@ public class UnstablePairs {
 						}
 
 						//If we reached this far, we found an unstable pair. Record it
-						unstablePairs += s.getRollNo() + "," + c.getcourseNumber() + "\n";
+						unstablePairs += s.getRollNo() + "," + c.getcourseNumber() + "," + c.getStudentOfPreferenceNumber(c.leastPreferredAllottedStudent).getRollNo() +"\n";
 				}
 
 			}

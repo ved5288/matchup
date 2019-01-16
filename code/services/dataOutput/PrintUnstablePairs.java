@@ -16,7 +16,7 @@ public class PrintUnstablePairs{
 		BufferedWriter bw = new BufferedWriter(fw);
 					
 		//Header line for file
-		bw.write("RollNo,Course\n");
+		bw.write("RollNo,Course,LeastPreferredAllottedStudentForThisCourse\n");
 		bw.write(unstablePairs);
 		bw.close();	
 	}
