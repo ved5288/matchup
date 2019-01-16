@@ -34,7 +34,7 @@ public class PopulateCoursePreferenceList{
 			br.readLine();
 			//read line by line
 			while ((line = br.readLine()) != null) {  
-				line.replaceAll("\\s+",""); //Remove all whitespace
+				line=line.replaceAll("\\s+",""); //Remove all whitespace
 				inputLine = line.split(splitBy);
 	            tempCourse = Course.getCourseBycourseNumber(inputLine[0],courseList);  //The first string has the course Id with which we can get the course object it corresponds to
 	            if (tempCourse==null){ //The course does not exist in the course list : return error message

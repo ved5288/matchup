@@ -37,7 +37,7 @@ public class PopulateStudentPreferenceList{
 			br.readLine();
 			//read input file line by line
 			while ((line = br.readLine()) != null) {			
-				line.replaceAll("\\s+",""); //Remove all whitespace
+				line=line.replaceAll("\\s+",""); //Remove all whitespace
 				inputLine = line.split(splitBy);
 
 				int preferenceNumber = 1;
