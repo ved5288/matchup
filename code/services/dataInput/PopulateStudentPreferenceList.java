@@ -39,30 +39,29 @@ public class PopulateStudentPreferenceList{
 			while ((line = br.readLine()) != null) {			
 				line.replaceAll("\\s+",""); //Remove all whitespace
 				inputLine = line.split(splitBy);
+
+				int preferenceNumber = 1;
 				
-				//Get the various columns that are got after split the line
-				String studentRollNumber = inputLine[0];
-				String originalcourseNumber = inputLine[1];
-					
-				//Set preference number.
-				int preferenceNumber = Integer.parseInt(inputLine[2]);
-				
+
 				//Get the student object corresponding to this preference
-				tempStudent = Student.getStudentByRollNo(studentRollNumber,studentList);
+				tempStudent = Student.getStudentByRollNo(inputLine[0],studentList);
 				if (tempStudent == null){ //If the student does not exist in the student list - throw an error
 		        	br.close();
-		        	return "Student : " + studentRollNumber + " does not exist but has an entry in the student preference list";
+		        	return "Student : " + inputLine[0] + " does not exist but has an entry in the student preference list";
 		        }
+	            
+		        for(int i=1;i<inputLine.length;i++){  //loop through the students and add them to the course's preference list
+			        //Get the course object corresponding to this preference
+					tempCourse = Course.getCourseBycourseNumber(inputLine[i], courseList);
+					if (tempCourse==null){ //The course does not exist in the course list - error
+						br.close();
+						return "Course: " + inputLine[i] + " does not exist, but the student " + tempStudent.getRollNo() + " has given a preference for it";
+					}
 
-				//Get the course object corresponding to this preference
-				tempCourse = Course.getCourseBycourseNumber(originalcourseNumber, courseList);
-				if (tempCourse==null){ //The course does not exist in the course list - error
-					br.close();
-					return "Course: " + originalcourseNumber + " does not exist, but the student " + tempStudent.getRollNo() + " has given a preference for it";
-				}
-				
-				//Add to the list of courses
-				tempStudent.studentPreferenceList.add(new StudentPreference(tempCourse,preferenceNumber));				
+					//Add to the list of courses
+					tempStudent.studentPreferenceList.add(new StudentPreference(tempCourse,preferenceNumber));
+					preferenceNumber++;
+		        }
 			}
 			br.close(); //closing file pointer
 		//just some exception handling.
@@ -71,16 +70,7 @@ public class PopulateStudentPreferenceList{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		//Now that we have read the student preference list, loop through the set of students.
-		for (Student st : studentList){
-			//Sort the preference list based on the preference numbers provided
-			Collections.sort(st.studentPreferenceList);
-			//Now relabel the preference numbers : This may be necessary if the original preference numbers had gaps, and also because we could have introduced gaps when we created the preference object
-			for (int i=0;i<st.studentPreferenceList.size();i++){
-				st.studentPreferenceList.get(i).setPreferenceNumberToPositionInPreferenceList(st.studentPreferenceList);
-			}
-		}
+	
 		return null;
 	}
 }

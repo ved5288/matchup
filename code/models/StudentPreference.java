@@ -29,15 +29,6 @@ public class StudentPreference implements Comparable<StudentPreference>{
 		return preferenceNo;
 	}
 	
-	//Used to set the preference number of this student preference based on its position in the preference list (provided as an argument)
-	public void setPreferenceNumberToPositionInPreferenceList(ArrayList<StudentPreference> studentPreferenceList) {
-		for (int i=0;i<studentPreferenceList.size();i++){
-			if (this==studentPreferenceList.get(i)){
-				preferenceNo = i+1;
-			}
-		}
-	}
-	
 	//Given a student preference list, it returns a student preference based on the courseNumber
 	public static StudentPreference getStudentPreferenceBycourseNumber(ArrayList<StudentPreference> preferenceList,String inpcourseNumber){
 		for (int i=0;i<preferenceList.size();i++){
