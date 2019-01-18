@@ -41,7 +41,7 @@ public class UnstablePairs {
 
 				// If we reach here, course prefers the student over its least preferred matched student.
 
-				for ( int j=i+i; j<s.studentPreferenceList.size(); j++){
+				for ( int j=i+1; j<s.studentPreferenceList.size(); j++){
 					StudentPreference replaceSP = s.studentPreferenceList.get(j);
 
 						// Ignore if a lower unallotted preference is seen
@@ -61,6 +61,7 @@ public class UnstablePairs {
 
 						//If we reached this far, we found an unstable pair. Record it
 						unstablePairs += s.getRollNo() + "," + c.getcourseNumber() + "," + c.getStudentOfPreferenceNumber(c.leastPreferredAllottedStudent).getRollNo() +"\n";
+						break;
 				}
 
 			}
@@ -82,7 +83,7 @@ public class UnstablePairs {
 			if(sc.coursesInThisClass.contains(exchangeCourse)){
 				int numOfCoursesAllottedFromThisClass = 0;
 				for (StudentPreference allotted : s.orderedListOfcoursesAllotted) {
-					if(allotted != exceptionCourse && sc.coursesInThisClass.contains(allotted)){
+					if(allotted != exceptionCourse && sc.coursesInThisClass.contains(allotted) ){
 						numOfCoursesAllottedFromThisClass++;
 					}
 				}

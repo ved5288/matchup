@@ -249,7 +249,7 @@ public class ReasonsForNotAllottingPreferences {
 				ArrayList<StudentPreference> coursesAllottedInThisClass = new ArrayList<StudentPreference>();
 
 				for (StudentPreference allottedElective : s.orderedListOfcoursesAllotted) {
-					if(sc.coursesInThisClass.contains(allottedElective)){
+					if(sc.coursesInThisClass.contains(allottedElective) && validPreference.compareTo(allottedElective) == 1){
 						coursesAllottedInThisClass.add(allottedElective);
 					}
 				}
