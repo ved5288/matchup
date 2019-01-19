@@ -39,6 +39,19 @@ public class UnstablePairs {
 					continue;
 				}
 
+				//sp should violate class constraints with the allotted elective courses of s
+				if (!checkElecitveCourseConstrained(s,sp,null)){
+					
+					//sp.getCourseObj() should not fit into the remaining credits for s 
+					if (checkIfCourseFitsInCredits(s,sp.getCourseObj(),null)){
+						unstablePairs += s.getRollNo() + "," + c.getcourseNumber() + "," + c.getStudentOfPreferenceNumber(c.leastPreferredAllottedStudent).getRollNo() +"\n";
+						continue; //If the course fits in the remaining credits, unstablity exists
+					}
+				}
+					
+				
+
+
 				// If we reach here, course prefers the student over its least preferred matched student.
 
 				for ( int j=i+1; j<s.studentPreferenceList.size(); j++){
