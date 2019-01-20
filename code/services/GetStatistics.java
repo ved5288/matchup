@@ -18,9 +18,12 @@ public class GetStatistics{
 	//Self explanatory
 	public static double getMean(ArrayList<Double> array) {
 		double total=0;
-		double size = (double) array.size();
+		double size = 0;
 		for (double element : array){
-			total += element;
+			if(element!=-1){
+				total += element;
+				size++;
+			}
 		}
 		return (total/size);
 	}
@@ -28,12 +31,15 @@ public class GetStatistics{
 	//Self explanatory
 	public static double getStandardDeviation(ArrayList<Double> array) {
 		double varianceTotal = 0;
-		double size = (double) array.size();
+		double size = 0;
 		double mean = getMean(array);
 		double variance;
 		
 		for (double element : array){
-			varianceTotal += (element-mean)*(element-mean);
+			if(element!=-1){
+				varianceTotal += (element-mean)*(element-mean);
+				size++;
+			}
 		}
 		variance = varianceTotal/size;
 		return Math.sqrt(variance);
@@ -108,7 +114,7 @@ public class GetStatistics{
 			}
 
 			if(numOfStudentsAllotted==0){ // If no one was allotted then the rank is 0. avoids division by 0.
-				c.effectiveAverageRank = 0;
+				c.effectiveAverageRank = -1;
 			} else {
 				c.effectiveAverageRank = totalRank/ (double)(numOfStudentsAllotted*numOfStudentsAllotted);
 			}
@@ -156,7 +162,7 @@ public class GetStatistics{
 	private static void computeEffectiveAverageRanks(ArrayList<Student> studentList){
     	for (Student s : studentList){
     		if (s.orderedListOfcoursesAllotted.size()==0){ //If nothing was allotted. Avoids a divide by 0 in the else part
-    			s.effectiveAverageRank = 0;
+    			s.effectiveAverageRank = -1;
     		}
     		else{
     			//Just a copy of the original preference list since we do not want to modify it
