@@ -179,7 +179,6 @@ public class GetStatistics{
         				totalRank += index; //compute the new totalRank
         				index++; //Increment the index for the next course on the preference list to be counted
         				allottedCoursesSoFar.add(preferenceList.get(i));
-        				i++; //Increment the value of i since we want to skip the outside department version of the course, because the student already got allotted to the inside department version of it
         			} else {//If the student was not allotted this preference
     					if (constrained(preferenceList.get(i),allottedCoursesSoFar,s.getMaxElectiveCreditsInSem(),s.studentClasses)){ //Check if the preference clashes with a higher preference for some reason class constraint or credits getting over
         					;//Do nothing. Index should not get incremented in this case
