@@ -10,3 +10,4 @@ seat: Main.java
 #used to clean all class files
 clean: 
 	$(RM) */*.class
+	$(RM) */*/*.class
