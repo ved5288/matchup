@@ -48,17 +48,22 @@ public class Main {
 		System.out.println("Which algorithm to run?");
         System.out.println("1. Iterative HR");
         System.out.println("2. First Preference Allotment");
-        System.out.println("3. Slotwise HR (with Heuristic 1)");
-        System.out.println("4. Slotwise HR (with Heuristic 2)");
+        System.out.println("3. Load Max Cardinality Matching");
         int algorithm = sc.nextInt();
         sc.nextLine(); //This is necessary because the sc.nextInt() doesn't consume the '\n' and this is read by the sc.nextLine() appearing after this. Hence this is just meant to consume the '\n' character
 		
+        String outputFile="";
+        if(algorithm==3){
+      		System.out.println("Please enter the location of file from where you want the output to be read: ");
+			outputFile = sc.nextLine();  	
+        }
+
         //Reading the folder to which the output is to be printed
         System.out.println("Please enter output folder to print to");
         String outputFolder = sc.nextLine();
         
       	//Call the executeAllotmentSteps function to run the allotment
-      	ExecuteStepsForAllotment.executeAllotmentSteps(studentListFile,courseListFile,studentPreferenceListFile,coursePreferenceListFile,masterClassFile,studentClassFile,algorithm,outputFolder);
+      	ExecuteStepsForAllotment.executeAllotmentSteps(studentListFile,courseListFile,studentPreferenceListFile,coursePreferenceListFile,masterClassFile,studentClassFile,algorithm,outputFile,outputFolder);
       	
       	//Program has ended
       	System.out.println("Execution over.......");
