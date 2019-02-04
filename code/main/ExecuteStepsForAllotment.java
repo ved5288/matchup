@@ -172,10 +172,7 @@ public class ExecuteStepsForAllotment {
         /* COMPUTE STATISTICS */
         GetStatistics.computePerStudentStatistics(studentList);
         GetStatistics.computePerCourseStatistics(courseList);
-        
-        /* COMPUTE THE REASONS FOR ALL THE POSSIBLE STUDENT-COURSE ALLOTMENTS THAT WERE NOT MADE*/
-        // ReasonsForNotAllottingPreferences.computeReasonsonsForNotAllottingPreferences(originalStudentList);
-        
+                
         /* COMPUTE THE LIST OF EXCHANGE UNSTABLE PAIRS and UNSTABLE PAIRS */
         String exchangeUnstablePairs = ExchangeUnstablePairs.computeExchangeUnstablePairs(studentList);
         String unstablePairs = UnstablePairs.computeUnstablePairs(studentList);
@@ -198,10 +195,6 @@ public class ExecuteStepsForAllotment {
         PrintPerStudentAllottedCourses.execute(studentList,outputFolder + "/perStudentAllottedCourses.csv");
         //Write the set of students allotted to each course
         PrintPerCourseAllottedStudents.execute(studentList,courseList,outputFolder + "/perCourseAllotedStudents.csv");
-        //Write the reason for every student-course pair that was not allotted
-        // PrintReasonsForNotAllottingPreferences.execute(studentList,outputFolder + "/reasonsForNotAllottingPreferences.csv");
-      	//Write the reason for every student-course pair that was not allotted
-        // CreateFolderForStudentEmails.execute(studentList,outputFolder+"/studentEmails");
         //Write out the set of exchange unstable pairs for this allotment
         PrintExchangeUnstablePairs.execute(exchangeUnstablePairs,outputFolder + "/exchangeUnstablePairs.csv");
         //Write out the set of unstable pairs for this allotment

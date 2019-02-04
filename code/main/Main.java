@@ -5,12 +5,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * This function is the main function that will be called when there is no GUI
  * This function is responsible for taking all the inputs from the user from the terminal,
  * and it also prints all the required information to the terminal.
  * 
  * This class is not supposed to do anything other than text input/output
- * @author akshay
  *
  */
 public class Main {
