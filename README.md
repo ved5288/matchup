@@ -32,8 +32,7 @@ Where `input_dir` corresponds to the folder containing the instance. On executio
 
 Do the following
 
-`cd code`
-
+`cd code` <br />
 `make`
 
 This would create a `SEAT.jar` in the the _code_ directory.
