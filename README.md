@@ -26,3 +26,22 @@ Run the following command to generate the max. cardinality LP file for an instan
 
 Where `input_dir` corresponds to the folder containing the instance. On execution it automatically generates `max_card_lp.txt` file into the same directory and then invokes CPLEX to solve the LP and its output matching obtained is written to `input_dir/output.csv` file.
 
+---
+
+### SEAT - Compiling the Code
+
+Do
+
+`cd code`
+`make`
+
+This would create a `SEAT.jar` in the the _code_ directory.
+
+---
+
+### SEAT - Computing the matching using FirstPreference and IterativeHR algorithms
+
+Do
+
+`java -jar SEAT.jar`
+

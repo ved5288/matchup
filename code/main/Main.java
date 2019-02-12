@@ -22,18 +22,18 @@ public class Main {
 		/* TAKING USER INPUT AND SENDING IT TO THE EXECUTE STEPS FOR ALLOTMENT FUNCTION*/
 		
 		//Read student list file
-		System.out.println("Please enter the input csv file name where the list of students+CGPAs in the above format is stored");
+		System.out.println("Please enter the location of file where the list of students is stored");
 		String studentListFile = sc.nextLine();
 		
 		//Read course list file
-		System.out.println("Please enter the input csv file name where the list of courses+rankingCriteria+capacity in the above format is stored");
+		System.out.println("Please enter the location of file where the list of courses and their respective capacities are stored");
 		String courseListFile = sc.nextLine();
 		
 		//Read student preference list file
-		System.out.println("Please enter the input csv file name where the preference list in the above format are stored");
+		System.out.println("Please enter the location of file where student preferences are stored");
 		String studentPreferenceListFile = sc.nextLine();
 				
-		System.out.println("Please enter the location of file from where you want the course preferences to be read: ");
+		System.out.println("Please enter the location of file where course preferences are stored");
 		String coursePreferenceListFile = sc.nextLine();
 
 		System.out.println("Please enter the location of file from where you want the master class constraint specifications to be read: ");
