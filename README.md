@@ -30,9 +30,10 @@ Where `input_dir` corresponds to the folder containing the instance. On executio
 
 ### SEAT - Compiling the Code
 
-Do
+Do the following
 
 `cd code`
+
 `make`
 
 This would create a `SEAT.jar` in the the _code_ directory.
@@ -41,7 +42,31 @@ This would create a `SEAT.jar` in the the _code_ directory.
 
 ### SEAT - Computing the matching using FirstPreference and IterativeHR algorithms
 
-Do
+Run the following command
 
 `java -jar SEAT.jar`
+
+It will ask for the following input:
+
+`Please enter the location of file where the list of students is stored` : _Input the studentList.csv's location_
+
+`Please enter the location of file where the list of courses and their respective capacities are stored` : _Input the courseList.csv's location_
+
+`Please enter the location of file where student preferences are stored` : _Input the studentPreferenceList.csv's location_
+
+`Please enter the location of file where course preferences are stored` : _Input the coursePreferenceList.csv's location_
+
+`Please enter the location of file from where you want the master class constraint specifications to be read:` : _Input the masterClassSpecification.csv's location_
+
+`Please enter the location of file from where you want the student class constraint specifications to be read:` : _Input the studentClassSpecification.csv's location_
+
+`Which algorithm to run?`
+
+`1. Iterative HR`
+
+`2. First Preference Allotment`
+
+`3. Load Max Cardinality Matching` : _Enter 1 for iterativeHR, and 2 for firstPreference_
+
+`Please enter output folder to print to` : _Enter the directoryname in which you want the output to be stored_
 
