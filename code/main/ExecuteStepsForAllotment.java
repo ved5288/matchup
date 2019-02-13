@@ -16,7 +16,7 @@ import services.FirstPreferenceAllotmentAlgorithm;
 import services.LoadMaxCardinalityOutput;
 import services.GetStatistics;
 import services.InputSanitization;
-import services.IterativeHRalgorithm;
+import services.IterativeGSalgorithm;
 import services.MakeInputListsUnmodifiable;
 import services.OutputSanitization;
 import services.ReasonsForNotAllottingPreferences;
@@ -143,8 +143,8 @@ public class ExecuteStepsForAllotment {
 		
         /* RUN THE MAIN ALGORITHM */
         if(algorithm==1){
-        	printProgressNotification("Running the Iterative HR algorithm......");
-            IterativeHRalgorithm.runAlgorithm(studentList,courseList);
+        	printProgressNotification("Running the Gale-Shapley + Iterative Framework algorithm......");
+            IterativeGSalgorithm.runAlgorithm(studentList,courseList);
         }
         else if(algorithm==2){
         	printProgressNotification("Running the First Preference Allotment algorithm......");

@@ -7,7 +7,7 @@ import models.CoursePreference;
 import models.Student;
 import models.StudentPreference;
 
-public class IterativeHRalgorithm {
+public class IterativeGSalgorithm {
 
 	public static void runAlgorithm(ArrayList<Student> studentList,ArrayList<Course> courseList) {
 		//some declarations

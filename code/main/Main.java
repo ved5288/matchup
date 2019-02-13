@@ -44,7 +44,7 @@ public class Main {
 
 		//Reading which algorithm to use
 		System.out.println("Which algorithm to run?");
-        System.out.println("1. Iterative HR");
+        System.out.println("1. Gale-Shapley + Iterative Allotment Framework");
         System.out.println("2. First Preference Allotment");
         System.out.println("3. Load Max Cardinality Matching");
         int algorithm = sc.nextInt();

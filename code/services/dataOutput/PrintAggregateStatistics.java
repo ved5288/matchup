@@ -43,10 +43,10 @@ public class PrintAggregateStatistics{
 		}
 
 
-		bw.write("EAR-S,");
+		bw.write("MEAR-S,");
 		double studentEffectiveRankMean = GetStatistics.getMean(studentEffectiveAvgRanks);
 		bw.write(Double.toString(roundOff(studentEffectiveRankMean)));
-		bw.write("\nEAR-C,");
+		bw.write("\nMEAR-C,");
 		double courseEffectiveRankMean = GetStatistics.getMean(courseEffectiveAvgRanks);
 		bw.write(Double.toString(roundOff(courseEffectiveRankMean)));
 		bw.write("\nCS-S,");
