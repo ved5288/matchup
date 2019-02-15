@@ -59,7 +59,7 @@ It will ask for the following input:
 `2. First Preference + Iterative Allotment Framework` <br />
 `3. Load Max Cardinality Matching`
 
-_Enter 1 for Gale-Shapley + IAF, and 2 for First Preference + IAF and 3 for loading max cardinality matching_
+_Enter 1 for Gale-Shapley + IAF, 2 for First Preference + IAF, and 3 for loading max cardinality matching_
 
 Additionally, if _3_ is chosen, the following will be prompted:
 
