@@ -10,6 +10,8 @@ To compile the java code, do the following
 
 This would create a `CourseAllocationTool.jar` in the _code_ directory
 
+---
+
 ### Input Data Generator (`/code/input_generator/`)
 
 Run the following terminal command to randomly generate an instance with command line arguments:
