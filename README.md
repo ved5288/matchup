@@ -34,7 +34,7 @@ Where `input_dir` corresponds to the folder containing the instance. On executio
 
 ---
 
-### Computing matching & statistics using First Preference + IAF and Gale-Shapley + IAF algorithms
+### Computing matching & statistics using FP+IAF and GS+IAF algorithms
 
 Run the following command
 
@@ -50,9 +50,9 @@ It will ask for the following input:
 
 `Please enter the location of file where course preferences are stored` : _Input the coursePreferenceList.csv's location_
 
-`Please enter the location of file from where you want the master class constraint specifications to be read:` : _Input the masterClassSpecification.csv's location_
+`Please enter the location of file from where you want the master class constraint specifications to be read` : _Input the masterClassSpecification.csv's location_
 
-`Please enter the location of file from where you want the student class constraint specifications to be read:` : _Input the studentClassSpecification.csv's location_
+`Please enter the location of file from where you want the student class constraint specifications to be read` : _Input the studentClassSpecification.csv's location_
 
 `Which algorithm to run?` <br />
 `1. Gale-Shapley + Iterative Allotment Framework` <br />
@@ -62,6 +62,7 @@ It will ask for the following input:
 _Enter 1 for Gale-Shapley + IAF, and 2 for First Preference + IAF and 3 for loading max cardinality matching_
 
 Additionally, if _3_ is chosen, the following will be prompted:
+
 `Please enter the location of file from where you want the output to be read` : _Input the output.csv's location_
 
 `Please enter output folder to print to` : _Enter the directory name in which you want the output to be stored_
