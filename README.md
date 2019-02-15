@@ -1,12 +1,18 @@
 ## SEA-2019
 
-### Input Data Generator 
+### Software Dependencies & Code compilation
+python 3.5, numpy, IBM ILOG CPLEX Optimization Studio v12.8 - python 3.5 API, java
 
-(_Directory :_  `/code/input_generator/`)
+To compile the java code, do the following
 
-*_Software Dependencies_* - python 3.5, numpy
+`cd code` <br />
+`make`
 
-Run the following terminal command to generate a SEAT instance:
+This would create a `CourseAllocationTool.jar` in the _code_ directory
+
+### Input Data Generator (`/code/input_generator/`)
+
+Run the following terminal command to randomly generate an instance with command line arguments:
 
 `python3 generate_instance.py <n1> <n2> <k_low> <k_high> <flag> <output_folder>`
 
@@ -18,9 +24,7 @@ Note that when `flag = 0`, the instance generated corresponds to the master mode
 
 ### Compute Maximum Cardinality Matching using CPLEX
 
-*_Software Dependencies_* - IBM ILOG CPLEX Optimization Studio v12.8 - python 3.5 API
-
-Run the following command to generate the max. cardinality LP file for an instance and solve the LP using CPLEX solver.
+Run the following command to generate the maximum cardinality LP file for an instance and solve the LP using CPLEX solver.
 
 `python3 run_cplex.py <input_dir>`
 
@@ -28,18 +32,7 @@ Where `input_dir` corresponds to the folder containing the instance. On executio
 
 ---
 
-### Compiling the Code
-
-Do the following
-
-`cd code` <br />
-`make`
-
-This would create a `CourseAllocationTool.jar` in the the _code_ directory.
-
----
-
-### Computing the matching using FirstPreference and IterativeHR algorithms
+### Computing the matching & statistics using First Preference + IAF and Gale-Shapley + IAF algorithms
 
 Run the following command
 
@@ -61,8 +54,9 @@ It will ask for the following input:
 
 `Which algorithm to run?` <br />
 `1. Gale-Shapley + Iterative Allotment Framework` <br />
-`2. First Preference Allotment` <br />
+`2. First Preference + Iterative Allotment Framework` <br />
 `3. Load Max Cardinality Matching` : _Enter 1 for Gale-Shapley + Iterative Framework, and 2 for First Preference_
 
 `Please enter output folder to print to` : _Enter the directoryname in which you want the output to be stored_
 
+The output folder finally contains the resultant matching along with other statistics such as MEAR, exchange blocking pairs, blocking pairs, etc.
