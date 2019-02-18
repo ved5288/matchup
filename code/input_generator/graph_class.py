@@ -168,6 +168,18 @@ class Graph:
         ofile.write("2\n")
         ofile.write(outputfolder+"/firstPreference")
         ofile.close()
+
+        ofile = open(outputfolder+"/cli-maxCard", "w")
+        ofile.write(outputfolder+"/studentList.csv\n")
+        ofile.write(outputfolder+"/courseList.csv\n")
+        ofile.write(outputfolder+"/studentPreferenceList.csv\n")
+        ofile.write(outputfolder+"/coursePreferenceList.csv\n")
+        ofile.write(outputfolder+"/masterClassSpecification.csv\n")
+        ofile.write(outputfolder+"/studentClassSpecification.csv\n")
+        ofile.write("3\n")
+        ofile.write(outputfolder+"/output.csv")
+        ofile.write(outputfolder+"/maxCard")
+        ofile.close()
 	
     def print_format_terminal(self):
         print('@PartitionA')
