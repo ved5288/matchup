@@ -18,7 +18,7 @@ def run_lp(in_dir, out_dir):
     f = open(out_dir, 'w')
     f.write('Student Roll Number, Course ID \n')
     for e in edges:
-        if(model.solution.get_values(e) == 1.0):
+        if(model.solution.get_values(e) > 0.9):
             e_split = e.split('_')
             r_name = 'r' + e_split[1]
             h_name = 'h' + e_split[2]
